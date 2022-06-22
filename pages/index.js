@@ -1,10 +1,13 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import styles from '../styles/Home.module.css'
 import Spinner from '../components/Spinner'
+import UserSearchForm from '../components/UserSearchForm'
+import UserList from '../components/UserList'
+import GithubContext from '../context/github'
 export default function Home() {
-  const [loading, setLoading] = useState(false)
+  const {loading} = useContext(GithubContext)
   if(loading) {
     return <Spinner />
   }
@@ -18,9 +21,8 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1 >
-          Welcome to GitHub User Finder
-        </h1>
+        <UserSearchForm />
+        <UserList />
       </main>
     </div>
   )
